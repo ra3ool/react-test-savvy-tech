@@ -1,14 +1,10 @@
-import { Button } from '@/components/ui/button';
-import { CheckCheck } from 'lucide-react';
+import { MainLayout } from './layouts/MainLayout';
+import { Home } from './views/Home';
 
-function App() {
+export default function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>
-        <CheckCheck />
-      </Button>
-    </div>
+    <MainLayout>
+      <Home />
+    </MainLayout>
   );
 }
-
-export default App;

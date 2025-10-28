@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -117,4 +117,16 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+html {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+body,
+#root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
