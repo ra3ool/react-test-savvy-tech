@@ -15,6 +15,12 @@ export type ItemActionProps = {
   trigger?: React.ReactNode;
 };
 
+export type DeleteActionProps = {
+  itemTitle: string;
+  onDelete: () => void;
+  trigger?: React.ReactNode;
+};
+
 export type ItemListProps = {
   items: Item[];
   onEdit: (id: string, data: { title: string; subTitle?: string }) => void;

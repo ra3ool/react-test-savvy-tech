@@ -116,7 +116,7 @@ function ItemAction({
                   Cancel
                 </Button>
               </DialogClose>
-              <Button type="submit">
+              <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
                 {isEdit ? 'Update Item' : 'Add Item'}
               </Button>
             </DialogFooter>
