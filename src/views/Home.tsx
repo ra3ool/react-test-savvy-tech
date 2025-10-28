@@ -4,7 +4,7 @@ import { useItemsReducer } from '@/hooks/useItemsReducer';
 import type { InsertItem } from '@/type/item';
 
 function Home() {
-  const { items, addItem } = useItemsReducer();
+  const { items, addItem, updateItem, deleteItem } = useItemsReducer();
 
   const handleSaveItem = (data: InsertItem) => {
     addItem(data);
@@ -19,7 +19,7 @@ function Home() {
           onSave={handleSaveItem}
           triggerText="Add New Item"
         />
-        <ItemsList items={items} />
+        <ItemsList items={items} onEdit={updateItem} onDelete={deleteItem} />
       </div>
     </>
   );

@@ -12,4 +12,17 @@ export type ItemActionProps = {
   mode: 'add' | 'edit';
   onSave: (data: InsertItem) => void;
   triggerText?: string;
+  trigger?: React.ReactNode;
+};
+
+export type ItemListProps = {
+  items: Item[];
+  onEdit: (id: string, data: { title: string; subTitle?: string }) => void;
+  onDelete: (id: string) => void;
+};
+
+export type ItemCardProps = {
+  item: Item;
+  onEdit: ItemListProps['onEdit'];
+  onDelete: ItemListProps['onDelete'];
 };

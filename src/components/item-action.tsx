@@ -24,7 +24,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-function ItemAction({ item, mode, onSave, triggerText }: ItemActionProps) {
+function ItemAction({
+  item,
+  mode,
+  onSave,
+  triggerText,
+  trigger,
+}: ItemActionProps) {
   const [open, setOpen] = useState(false);
   const isEdit = mode === 'edit';
 
@@ -55,13 +61,15 @@ function ItemAction({ item, mode, onSave, triggerText }: ItemActionProps) {
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button className="w-fit" variant={isEdit ? 'outline' : 'default'}>
-          {triggerText || (isEdit ? 'Edit Item' : 'Add New Item')}
-        </Button>
+        {trigger || (
+          <Button className="w-fit" variant={isEdit ? 'outline' : 'default'}>
+            {triggerText || (isEdit ? 'Edit Item' : 'Add Item')}
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{isEdit ? 'Edit Item' : 'Add New Item'}</DialogTitle>
+          <DialogTitle>{isEdit ? 'Edit Item' : 'Add Item'}</DialogTitle>
           <DialogDescription>
             {isEdit
               ? 'Update the item details below.'

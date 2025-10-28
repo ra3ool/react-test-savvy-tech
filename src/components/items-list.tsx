@@ -1,11 +1,18 @@
-import type { Item } from '@/type/item';
-import ItemCard from './item-card';
+import type { ItemListProps } from '@/type/item';
+import { ItemCard } from './item-card';
 
-function ItemsList({ items }: { items: Item[] }) {
+function ItemsList({ items, onEdit, onDelete }: ItemListProps) {
+  // we can add some sorting here
+
   return (
     <>
       {items?.map((item) => (
-        <ItemCard key={item.id} item={item} />
+        <ItemCard
+          key={item.id}
+          item={item}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
       ))}
     </>
   );
