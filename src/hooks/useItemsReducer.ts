@@ -1,6 +1,6 @@
 import { StorageManager } from '@/lib/storage';
 import type { InsertItem, Item } from '@/type/item';
-import { useEffect, useReducer } from 'react';
+import { useCallback, useEffect, useReducer } from 'react';
 
 const STORAGE_KEY = 'todo-items';
 
@@ -48,17 +48,21 @@ export function useItemsReducer() {
     StorageManager.setItem(STORAGE_KEY, items);
   }, [items]);
 
-  const addItem = (data: InsertItem) =>
+  const addItem = useCallback((data: InsertItem) => {
     dispatch({ type: 'ADD_ITEM', payload: data });
+  }, []);
 
-  const updateItem = (id: string, data: Partial<Item>) =>
+  const updateItem = useCallback((id: string, data: Partial<Item>) => {
     dispatch({ type: 'UPDATE_ITEM', payload: { id, data } });
+  }, []);
 
-  const deleteItem = (id: string) =>
+  const deleteItem = useCallback((id: string) => {
     dispatch({ type: 'DELETE_ITEM', payload: id });
+  }, []);
 
-  const setItems = (items: Item[]) =>
+  const setItems = useCallback((items: Item[]) => {
     dispatch({ type: 'SET_ITEMS', payload: items });
+  }, []);
 
   return {
     items,

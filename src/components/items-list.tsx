@@ -1,7 +1,8 @@
 import type { ItemListProps } from '@/type/item';
+import { memo } from 'react';
 import { ItemCard } from './item-card';
 
-function ItemsList({ items, onEdit, onDelete }: ItemListProps) {
+const ItemsList = memo(({ items, onEdit, onDelete }: ItemListProps) => {
   // we can add some sorting here
 
   if (!items || items.length === 0) {
@@ -14,7 +15,7 @@ function ItemsList({ items, onEdit, onDelete }: ItemListProps) {
 
   return (
     <>
-      {items?.map((item) => (
+      {items.map((item) => (
         <ItemCard
           key={item.id}
           item={item}
@@ -24,6 +25,6 @@ function ItemsList({ items, onEdit, onDelete }: ItemListProps) {
       ))}
     </>
   );
-}
+});
 
 export { ItemsList };

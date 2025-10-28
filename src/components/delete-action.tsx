@@ -34,7 +34,10 @@ function DeleteAction({ itemTitle, onDelete, trigger }: DeleteActionProps) {
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
-            onClick={onDelete}
+            onClick={(e) => {
+              e.preventDefault();
+              onDelete();
+            }}
             className="bg-red-600 hover:bg-red-700"
           >
             Delete

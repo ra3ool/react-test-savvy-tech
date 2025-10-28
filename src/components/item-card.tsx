@@ -4,15 +4,24 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import type { ItemCardProps } from '@/type/item';
 import { EditIcon, TrashIcon } from 'lucide-react';
+import { memo, useCallback, useMemo } from 'react';
 
-function ItemCard({ item, onEdit, onDelete }: ItemCardProps) {
-  const handleEdit = (data: { title: string; subTitle: string }) => {
-    onEdit(item.id, data);
-  };
+const ItemCard = memo(({ item, onEdit, onDelete }: ItemCardProps) => {
+  const handleEdit = useCallback(
+    (data: { title: string; subTitle: string }) => {
+      onEdit(item.id, data);
+    },
+    [item.id, onEdit],
+  );
 
-  const handleDelete = () => {
+  const handleDelete = useCallback(() => {
     onDelete(item.id);
-  };
+  }, [item.id, onDelete]);
+
+  const formattedDate = useMemo(
+    () => new Date(item.createdAt).toLocaleString(),
+    [item.createdAt],
+  );
 
   return (
     <Card className="flex-row p-3 gap-4 overflow-hidden">
@@ -22,7 +31,7 @@ function ItemCard({ item, onEdit, onDelete }: ItemCardProps) {
           {item.subTitle}
         </h5>
         <h6 className="text-sm text-muted-foreground line-clamp-1">
-          {new Date(item.createdAt).toLocaleString()}
+          {formattedDate}
         </h6>
       </div>
       <div className="flex flex-col justify-around shrink-0">
@@ -49,6 +58,6 @@ function ItemCard({ item, onEdit, onDelete }: ItemCardProps) {
       </div>
     </Card>
   );
-}
+});
 
 export { ItemCard };
