@@ -5,7 +5,7 @@ function ItemsList({ items }: { items: Item[] }) {
   return (
     <>
       {items?.map((item) => (
-        <ItemCard key={item.title} item={item} />
+        <ItemCard key={item.id} item={item} />
       ))}
     </>
   );

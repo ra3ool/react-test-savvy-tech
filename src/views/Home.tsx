@@ -1,20 +1,15 @@
 import { ItemAction } from '@/components/item-action';
 import { ItemsList } from '@/components/items-list';
-import type { InsertItem, Item } from '@/type/item';
-import { useState } from 'react';
+import { useItemsReducer } from '@/hooks/useItemsReducer';
+import type { InsertItem } from '@/type/item';
 
 function Home() {
-  const [items, setItems] = useState<Item[]>([]);
+  const { items, addItem } = useItemsReducer();
 
   const handleSaveItem = (data: InsertItem) => {
-    const newItem: Item = {
-      id: Date.now().toString(),
-      title: data.title,
-      subTitle: data.subTitle,
-      createdAt: new Date(),
-    };
-    setItems([...items, newItem]);
+    addItem(data);
   };
+
   return (
     <>
       <div className="flex flex-col gap-4 w-full">
@@ -22,7 +17,7 @@ function Home() {
         <ItemAction
           mode="add"
           onSave={handleSaveItem}
-          triggerText="Add New Todo"
+          triggerText="Add New Item"
         />
         <ItemsList items={items} />
       </div>
