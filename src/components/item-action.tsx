@@ -62,7 +62,10 @@ function ItemAction({
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         {trigger || (
-          <Button className="w-fit" variant={isEdit ? 'outline' : 'default'}>
+          <Button
+            className="w-fit bg-blue-600 hover:bg-blue-700"
+            variant={isEdit ? 'outline' : 'default'}
+          >
             {triggerText || (isEdit ? 'Edit Item' : 'Add Item')}
           </Button>
         )}
